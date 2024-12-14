@@ -9,6 +9,7 @@ export class SpringBootFargateStack extends cdk.Stack {
     // VPC
     const vpc = new ec2.Vpc(this, "Vpc", {
       maxAzs: 2,
+      natGateways: 1,
     });
   }
 }
