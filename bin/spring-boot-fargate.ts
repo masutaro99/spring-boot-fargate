@@ -7,4 +7,7 @@ const app = new cdk.App();
 new EcrRepositoryStack(app, "EcrRepositoryStack", {
   repositoryName: "spring-boot-sample-app",
 });
-new SpringBootFargateStack(app, "SpringBootFargateStack", {});
+new SpringBootFargateStack(app, "SpringBootFargateStack", {
+  repositoryName: "spring-boot-sample-app",
+  imageTag: "7a2d757",
+});
