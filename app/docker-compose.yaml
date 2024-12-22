@@ -5,6 +5,7 @@ services:
       - "8080:8080"
     environment:
       DATABASE_HOST: "postgres"
+      DATABASE_NAME: "postgres"
       DATABASE_USER: "postgres"
       DATABASE_PASSWORD: "postgres"
   postgres:
@@ -12,4 +13,4 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: "postgres"
