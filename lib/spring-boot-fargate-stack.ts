@@ -89,6 +89,9 @@ export class SpringBootFargateStack extends cdk.Stack {
         ),
         props.imageTag
       ),
+      cpu: 384,
+      memoryLimitMiB: 768,
+      essential: true,
       environment: {
         JAVA_TOOL_OPTIONS: "-javaagent:/aws-opentelemetry-agent.jar",
         OTEL_TRACES_SAMPLER: "always_on",
@@ -127,6 +130,9 @@ export class SpringBootFargateStack extends cdk.Stack {
       image: ecs.ContainerImage.fromRegistry(
         "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest-amd64"
       ),
+      cpu: 128,
+      memoryLimitMiB: 256,
+      essential: false,
       secrets: {
         CW_CONFIG_CONTENT: ecs.Secret.fromSsmParameter(
           ssm.StringParameter.fromStringParameterName(
