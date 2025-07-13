@@ -9,5 +9,5 @@ new EcrRepositoryStack(app, "EcrRepositoryStack", {
 });
 new SpringBootFargateStack(app, "SpringBootFargateStack", {
   repositoryName: "spring-boot-sample-app",
-  imageTag: "7a2d757",
+  imageTag: "v2",
 });
