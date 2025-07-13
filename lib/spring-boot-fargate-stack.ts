@@ -45,15 +45,8 @@ export class SpringBootFargateStack extends cdk.Stack {
     // ECS Cluster
     const cluster = new ecs.Cluster(this, "Cluster", {
       vpc: vpc,
-      containerInsights: true,
+      containerInsightsV2: ecs.ContainerInsights.ENHANCED,
     });
-    const cfnCluster = cluster.node.defaultChild as ecs.CfnCluster;
-    cfnCluster.addPropertyOverride("ClusterSettings", [
-      {
-        name: "containerInsights",
-        value: "enhanced",
-      },
-    ]);
 
     // ECS Task Execution Role
     const taskExecutionRole = new iam.Role(this, "TaskExecutionRole", {
