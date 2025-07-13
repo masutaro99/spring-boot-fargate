@@ -5,6 +5,24 @@
 - EcrRepositoryStack
 - SpringBootFargateStack
 
+CloudWatch エージェントの設定ファイルは Systems Manager パラメータストアに格納して利用する想定。  
+SpringBootFargateStack 作成前に、`ecs-cwagent` という名前でパラメータストアを作成して、下記設定を格納する。
+
+```
+{
+  "traces": {
+    "traces_collected": {
+      "application_signals": {}
+    }
+  },
+  "logs": {
+    "metrics_collected": {
+      "application_signals": {}
+    }
+  }
+}
+```
+
 ECR スタックの差分確認
 
 ```
@@ -52,6 +70,28 @@ docker build \
   --platform=linux/x86_64 \
   -t spring-boot-sample-app:${IMAGE_TAG} \
   -f Dockerfile .
+```
+
+イメージタグは、`bin/spring-boot-fargate.ts` で指定して ECS タスク定義に反映させる。
+
+## DB へのテストデータ挿入
+
+VPC CloudShell を起動することを想定。  
+テーブル作成。
+
+```
+CREATE TABLE tasks (
+  id SERIAL PRIMARY KEY,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+データ挿入。
+
+```
+INSERT INTO tasks (content) VALUES ('writing');
 ```
 
 ## ローカル起動
