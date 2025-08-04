@@ -27,6 +27,18 @@ export class SpringBootFargateStack extends cdk.Stack {
     const vpc = new ec2.Vpc(this, "Vpc", {
       maxAzs: 2,
       natGateways: 1,
+      subnetConfiguration: [
+        {
+          cidrMask: 18,
+          name: "Public",
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+        {
+          cidrMask: 18,
+          name: "Private",
+          subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
+        },
+      ],
     });
 
     // Secret for DB credentials
