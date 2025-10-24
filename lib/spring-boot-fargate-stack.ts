@@ -107,7 +107,7 @@ export class SpringBootFargateStack extends cdk.Stack {
       essential: true,
       environment: {
         JAVA_TOOL_OPTIONS: "-javaagent:/aws-opentelemetry-agent.jar",
-        OTEL_TRACES_SAMPLER: "always_on",
+        OTEL_TRACES_SAMPLER: "xray",
         OTEL_TRACES_EXPORTER: "otlp",
         OTEL_METRICS_EXPORTER: "none",
         OTEL_PROPAGATORS: "xray,tracecontext,baggage,b3",
