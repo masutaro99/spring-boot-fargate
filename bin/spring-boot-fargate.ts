@@ -9,5 +9,5 @@ new EcrRepositoryStack(app, "EcrRepositoryStack", {
 });
 new SpringBootFargateStack(app, "SpringBootFargateStack", {
   repositoryName: "spring-boot-sample-app",
-  imageTag: "v2",
+  imageTag: "v1", // pushしたイメージタグを反映して下さい
 });
