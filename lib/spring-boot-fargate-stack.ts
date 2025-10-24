@@ -74,8 +74,6 @@ export class SpringBootFargateStack extends cdk.Stack {
     const taskRole = new iam.Role(this, "EcsTaskRole", {
       assumedBy: new iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
       managedPolicies: [
-        iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonS3FullAccess"),
-        iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMFullAccess"),
         iam.ManagedPolicy.fromAwsManagedPolicyName(
           "CloudWatchAgentServerPolicy"
         ),
