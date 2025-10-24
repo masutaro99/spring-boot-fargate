@@ -177,7 +177,7 @@ export class SpringBootFargateStack extends cdk.Stack {
       taskDefinition: taskDefinition,
       platformVersion: ecs.FargatePlatformVersion.VERSION1_4,
       desiredCount: 1,
-      assignPublicIp: true,
+      assignPublicIp: false,
       securityGroups: [appSg],
       vpcSubnets: vpc.selectSubnets({
         subnetGroupName: "Private",
